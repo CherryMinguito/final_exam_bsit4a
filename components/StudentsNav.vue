@@ -8,12 +8,14 @@
     <ul id="accordionSidebar" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" >
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center">
+        <NuxtLink to="/home" class="nav-link">
+          <a class="sidebar-brand d-flex align-items-center justify-content-center">
             <div class="sidebar-brand-icon">
-                <img src="@/assets/CTULogo.png" width="50" height="50"/>
+              <img src="@/assets/CTULogo.png" width="50" height="50" />
             </div>
             <div class="sidebar-brand-text mx-3">Enrollment System</div>
-        </a>
+          </a>
+        </NuxtLink>
 
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
