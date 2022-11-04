@@ -1,7 +1,6 @@
-<!-- Please remove this file from your project -->
 <template>
-  <body>
-        <div class="wrapper">
+  <body class="body">
+        <div class="wrapper align-center-item">
             <div class="row">
                 <div class="column">
                     <p style="padding-top:80px; text-align:center; font-weight:800;  font-size: 20px; color:white; text-shadow: 5px 5px 5px black;">WELCOME TO</p>
@@ -68,3 +67,12 @@ export default {
   name: 'LoginPage',
 }
 </script>
+
+<style>
+.body{
+    background-image: url("@/assets/bg5.png");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size:cover;
+  }
+</style>

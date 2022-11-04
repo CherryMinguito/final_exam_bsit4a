@@ -16,7 +16,7 @@ body{
       margin-bottom:50px;
       background-color: white;
       padding: 20px;
-      
+
   }
   .content td{
       color:#010424;
@@ -30,16 +30,16 @@ body{
       flex:50%;
   }
   .logo {
-      height:215px; 
-      display:block; 
-      margin-left: auto; 
+      height:215px;
+      display:block;
+      margin-left: auto;
       margin-right:auto;
       filter: drop-shadow(0.6rem 0.6rem 1rem black);
   }
   .act{
-      width:430px; 
-      padding:15px; 
-      background-color:white; 
+      width:430px;
+      padding:15px;
+      background-color:white;
       border-bottom: 4px solid;
       border-image-slice: 1;
       border-right: none;
@@ -55,11 +55,11 @@ body{
   .button{
       margin-top:10px;
       background: #507da0;  /* fallback for old browsers */
-      background: linear-gradient(to right, #253a4b, #507da0); 
-      display:block; 
-      margin-left: auto; 
+      background: linear-gradient(to right, #253a4b, #507da0);
+      display:block;
+      margin-left: -15px;
       margin-right: auto;
-      cursor:pointer; 
+      cursor:pointer;
       border:0;
       border-color:transparent;
       box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
@@ -73,6 +73,6 @@ body{
   }
   .button:hover{
       background: #30c9cd;  /* fallback for old browsers */
-      background: linear-gradient(to right, #330d69, #30c9cd); 
+      background: linear-gradient(to right, #330d69, #30c9cd);
       animation-timing-function:ease-out;
   }
