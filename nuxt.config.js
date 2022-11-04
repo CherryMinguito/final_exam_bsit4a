@@ -12,7 +12,19 @@ export default {
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/CTULogo.ico' },
-           { rel: 'stylesheeet', href:'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css'}]
+           { rel: 'stylesheeet', href:'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css'}],
+    script: [
+      {
+        src: 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js',
+        type: 'text/javascript',
+        body: true
+      },
+      {
+        src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js',
+        type: 'text/javascript',
+        body: true
+      }
+    ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
