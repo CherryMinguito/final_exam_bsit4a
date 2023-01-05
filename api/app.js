@@ -1,32 +1,16 @@
 const koa = require('koa');
 const Router = require('koa-router');
-
 const app = new koa();
-const router = new Router();
+const {koaBody} = require('koa-body');
+const cors = require ('@koa/cors');
 
-router.get('/', (ctx, next) => {
-  console.log(ctx.request);
-  ctx.body = "Hello World"
+app.use(koaBody());
+app.use(cors());
+
+let students = require('./student.js');
+
+app.use(students.routes()).use(students.allowedMethods);
+
+app.listen(3002, function() {
+  console.log("Server at http://localhost:3002/student")
 });
-
-router.get('/getstudents', (ctx, next) => {
-  console.log(ctx.request);
-  ctx.body = [
-    {
-      fname: 'Anna',
-      lname: 'Smith'
-    },
-    {
-      fname: 'John',
-      lname: 'Smith'
-    },
-    {
-      fname: 'Mark',
-      lname: 'Smith'
-    }
-  ]
-});
-
-app.use(router.routes())
-
-app.listen(3001);

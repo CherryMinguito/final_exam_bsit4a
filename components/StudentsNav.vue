@@ -298,78 +298,39 @@
           <div class="container-fluid">
 
             <!-- Page Heading -->
+
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
               <h1 class="h3 mb-0 text-gray-800">Students</h1>
             </div>
 
-            <div class="form-group row mt-3">
-              <div class="form-group col-md-4">
-                <label class="form-label" for="">First Name:</label>
-                <input type="text" name="fname" v-model="item.fname" class="form-control item" placeholder="Arcel">
-              </div>
-              <div class="form-group col-md-4">
-                <label class="form-label" for="">Middle Name:</label>
-                <input type="text" name="mname" v-model="item.mname" class="form-control item" placeholder="V">
-              </div>
-              <div class="form-group col-md-4">
-                <label class="form-label" for="">Last Name:</label>
-                <input type="text" name="lname" v-model="item.lname" class="form-control item" placeholder="Luceno">
-              </div>
-            </div>
-            <div class="form-group row mt-3">
-              <div class="form-group col-md-4">
-                <label class="form-label" for="">ID Number:</label>
-                <input type="number" name="idnum" v-model="item.idnum" class="form-control item" placeholder="1190352">
-              </div>
-              <div class="form-group col-md-4">
-                <label class="form-label" for="">Year Level:</label>
-                <b-form-select v-model="item.yrLvl" class="mb-3">
-                  <b-form-select-option value="null">Choose an option</b-form-select-option>
-                  <b-form-select-option value="1st year">1st year</b-form-select-option>
-                  <b-form-select-option value="2nd year">2nd year</b-form-select-option>
-                  <b-form-select-option value="3rd year">3rd year</b-form-select-option>
-                  <b-form-select-option value="4th year">4th year</b-form-select-option>
-                  <b-form-select-option value="5th year">5th year</b-form-select-option>
-                </b-form-select>
-              </div>
-              <div class="form-group col-md-4">
-                <label class="form-label" for="">Degree Program:</label>
-                <b-form-select v-model="item.degreeProgram" class="mb-3">
-                  <b-form-select-option value="null">Choose an option</b-form-select-option>
-                  <b-form-select-option value="Bachelor of Science in Computer Science">Bachelor of Science in Computer
-                    Science</b-form-select-option>
-                  <b-form-select-option value="Bachelor of Science in Informatiom Systems">Bachelor of Science in
-                    Information Systems</b-form-select-option>
-                  <b-form-select-option value="Bachelor of Science in Informatiom Technology">Bachelor of Science in
-                    Information Technology</b-form-select-option>
-                </b-form-select>
+            <div class="form-inline" action="#">
+              <div class="form-group row mt-3">
+                <div class="form-group col-md-4">
+                  <label class="form-label" for="">First Name:</label>
+                  <input type="text" id="form-name" v-model="item.firstName" placeholder="First Name" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="form-label" for="">Surame:</label>
+                  <input type="text" v-model="item.lastName" placeholder="Last Name" class="form-control">
+                </div>
+                <div class="form-group col-md-4 mt-2">
+                  <button type="button" class="btn btn-primary float-right" @click="addItem">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-plus-circle" viewBox="0 0 16 16" style="margin-top:-3px;">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                      <path
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                    </svg><span class="ml-2"> Add New Student</span>
+                  </button>
+                </div>
               </div>
             </div>
 
-            <div class="form-group row mt-3">
-              <div class="form-group col-md-4">
-
-              </div>
-              <div class="form-group col-md-4">
-
-              </div>
-              <div class="form-group col-md-4">
-                <button type="button" class="btn btn-primary float-right" @click="addItem">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-plus-circle" viewBox="0 0 16 16" style="margin-top:-3px;">
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                    <path
-                      d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                  </svg><span class="ml-2"> Add Admin Account</span>
-                </button>
-              </div>
-            </div>
-
-            <div class="card shadow">
+            <div class="card shadow mt-3">
               <div class="card-header py-3">
                 <div class="row">
                   <div class="col align-self-center">
-                    <h6 class="m-0 font-weight-bold text-primary">Manage Admin Accounts</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Manage Student Accounts</h6>
                   </div>
                 </div>
               </div>
@@ -378,51 +339,31 @@
                   <table class="table table-hover table-bordered pt-3">
                     <thead class="thead-light">
                       <tr>
-                        <th>ID Number</th>
+                        <th>Student ID</th>
                         <th>First Name</th>
-                        <th>Middle Name</th>
                         <th>Last Name</th>
-                        <th>Year Level</th>
-                        <th>Degree Program</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="item in items" :key="item.idnum">
+                      <tr v-for="item in items" :key="item.firstName">
                         <td>
-                          <input v-if="item.edit" type="text" v-model="item.idnum"
-                            v-on:keyup.enter="item.edit = !item.edit">
-                          <span v-else>{{ item.idnum }} </span>
+                          <input v-if="item.edit" type="text" v-model="item.id" disabled readonly>
+                          <span v-else>{{ item.id }} </span>
                         </td>
                         <td>
-                          <input v-if="item.edit" type="text" v-model="item.fname"
-                            v-on:keyup.enter="item.edit = !item.edit">
-                          <span v-else>{{ item.fname }} </span>
+                          <input v-if="item.edit" type="text" v-model="item.firstName">
+                          <span v-else>{{ item.firstName }} </span>
                         </td>
                         <td>
-                          <input v-if="item.edit" type="text" v-model="item.mname"
-                            v-on:keyup.enter="item.edit = !item.edit">
-                          <span v-else>{{ item.mname }} </span>
+                          <input v-if="item.edit" type="text" v-model="item.lastName">
+                          <span v-else>{{ item.lastName }} </span>
                         </td>
                         <td>
-                          <input v-if="item.edit" type="text" v-model="item.lname"
-                            v-on:keyup.enter="item.edit = !item.edit">
-                          <span v-else>{{ item.lname }} </span>
-                        </td>
-                        <td>
-                          <input v-if="item.edit" type="text" v-model="item.yrLvl"
-                            v-on:keyup.enter="item.edit = !item.edit">
-                          <span v-else>{{ item.yrLvl }} </span>
-                        </td>
-                        <td>
-                          <input v-if="item.edit" type="text" v-model="item.degreeProgram"
-                            v-on:keyup.enter="item.edit = !item.edit">
-                          <span v-else>{{ item.degreeProgram }} </span>
-                        </td>
-                        <td><button type="button" class="btn btn-primary btn-sm" @click="item.edit = !item.edit" >
+                          <button type="button" class="btn btn-primary btn-sm" @click="ItemEdit(item)">
                             Edit
                           </button>
-                          <button type="button" class="btn btn-danger btn-sm" @click="removeItem(index)">
+                          <button type="button" class="btn btn-danger btn-sm" @click="removeItem(item.id)">
                             Delete
                           </button>
                         </td>
@@ -486,28 +427,62 @@
 
 </template>
 
-<script>
+<script scope>
+let url = "http://localhost:3002/students";
 export default {
-  name: 'StudentsNavPage',
   data() {
     return {
-      item: { idnum: "", fname: "", mname: "", lname: "", yrLvl: "", degreeProgram: "", edit: false },
-      items: []
+      item: { firstName: "", lastName: "", edit: false },
+      items: [],
+      tempData: []
     }
   },
   methods: {
-    addItem() {
-      this.items.push({
-        idnum: this.item.idnum, fname: this.item.fname, mname: this.item.mname, lname: this.item.lname, yrLvl: this.item.yrLvl, degreeProgram: this.item.degreeProgram, edit: false
-      }
-      );
+    async addItem() {
+      await this.$axios.$post(url + '/create', { firstName: this.item.firstName, lastName: this.item.lastName })
+        .then((res) => {
+          console.log(res);
+          this.GetAllData();
+        })
+        .catch((err) => console.log(err));
       this.item = [];
-      // eslint-disable-next-line no-undef
-      $('#form-name').focus();
     },
-    removeItem(index) {
-      this.items.splice(index, 1)
+    async removeItem(id) {
+      await this.$axios.$post(url + '/delete', { id: id })
+        .then((res) => {
+          console.log(res);
+          this.GetAllData();
+        })
+        .catch((err) => console.log(err));
+    },
+    async GetAllData() {
+      this.items = await this.$axios.$get(url)
+        .then((res) => {
+          console.log(res);
+          this.tempData = res;
+          console.log(this.items);
+        })
+        .catch((err) => console.log(err));
+      this.items = this.tempData;
+    },
+    async ItemEdit(item) //For Updating
+    {
+      if (!item.edit) {
+        item.edit = !item.edit
+      }
+      else {
+        item.edit = !item.edit
+        await this.$axios.$post(url + '/update', { id: item.id, firstName: item.firstName, lastName: item.lastName })
+          .then((res) => {
+            console.log(res);
+            this.GetAllData();
+          })
+          .catch((err) => console.log(err));
+      }
     }
+  },
+  async mounted() {
+    await this.GetAllData();
   }
 }
 </script>
