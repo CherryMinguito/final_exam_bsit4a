@@ -33,7 +33,7 @@ A. Create a Vue page questionnaire that will accept multiple choice questions (5
 Acceptance Criteria:
 1. Page should have all the CRUD(Create, Update, Delete) method
 2. Create method should be able to accept questions, choices and correct answer
-3. The table of questions should hace 2 columns(question, answer). By default, hide the correct answer. There should be a button to show hidden answer when clicked.
+3. The table of questions should have 2 columns(question, answer). By default, hide the correct answer. There should be a button to show hidden answer when clicked.
 
 B. Create End To End Test for the acceptance criteria above mentioned(50 points)
 
