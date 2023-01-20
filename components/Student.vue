@@ -59,7 +59,7 @@
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-          <NuxtLink to="/students" class="nav-link">
+          <NuxtLink to="/student" class="nav-link">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
               class="bi bi-person-workspace" viewBox="0 0 16 16" style="margin-right: 10px;">
               <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H4Zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
@@ -305,22 +305,27 @@
 
             <div class="form-inline" action="#">
               <div class="form-group row mt-3">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                   <label class="form-label" for="">First Name:</label>
-                  <input type="text" id="form-name" v-model="item.firstName" placeholder="First Name" class="form-control">
+                  <input id="FName" v-model="item.fname" type="text" placeholder="First Name" class="form-control">
                 </div>
-                <div class="form-group col-md-4">
-                  <label class="form-label" for="">Surame:</label>
-                  <input type="text" v-model="item.lastName" placeholder="Last Name" class="form-control">
+                <div class="form-group col-md-3">
+                  <label class="form-label" for="">Surname:</label>
+                  <input id="LName" v-model="item.lname" type="text" placeholder="Last Name" class="form-control">
                 </div>
-                <div class="form-group col-md-4 mt-2">
-                  <button type="button" class="btn btn-primary float-right" @click="addItem">
+                <div class="form-group col-md-3">
+                  <label class="form-label" for="">Course (Abbr.):</label>
+                  <input id="Course" v-model="item.course" type="text" placeholder="Degree Program"
+                    class="form-control">
+                </div>
+                <div class="form-group col-md-3 mt-2">
+                  <button id="AddUser" type="button" class="btn btn-primary float-right" @click="addItem">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                       class="bi bi-plus-circle" viewBox="0 0 16 16" style="margin-top:-3px;">
                       <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                       <path
                         d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                    </svg><span class="ml-2"> Add New Student</span>
+                    </svg><span class="ml-2">Add New Student</span>
                   </button>
                 </div>
               </div>
@@ -335,40 +340,34 @@
                 </div>
               </div>
               <div class="card-body">
-                <div class="table-responsive " id="dataTable" role="grid" aria-describedby="dataTable_info">
-                  <table class="table table-hover table-bordered pt-3">
+                <div class="table-responsive" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                  <table class="table table-hover table-bordered pt-3" id="StudTable">
                     <thead class="thead-light">
                       <tr>
-                        <th>Student ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
+                        <th>Course</th>
                         <th>Action</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr v-for="item in items" :key="item.firstName">
+                      <tr v-for="item in items" v-bind:key="item.fname">
                         <td>
-                          <input v-if="item.edit" type="text" v-model="item.id" disabled readonly>
-                          <span v-else>{{ item.id }} </span>
+                          <input v-if="item.edit" v-model="item.fname" type="text">
+                          <span v-else>{{ item.fname }}</span>
                         </td>
                         <td>
-                          <input v-if="item.edit" type="text" v-model="item.firstName">
-                          <span v-else>{{ item.firstName }} </span>
+                          <input v-if="item.edit" v-model="item.lname" type="text">
+                          <span v-else>{{ item.lname }}</span>
                         </td>
                         <td>
-                          <input v-if="item.edit" type="text" v-model="item.lastName">
-                          <span v-else>{{ item.lastName }} </span>
+                          <input v-if="item.edit" v-model="item.course" type="text">
+                          <span v-else>{{ item.course }}</span>
                         </td>
                         <td>
-                          <button type="button" class="btn btn-primary btn-sm" @click="ItemEdit(item)">
-                            Edit
-                          </button>
-                          <button type="button" class="btn btn-danger btn-sm" @click="removeItem(item.id)">
-                            Delete
-                          </button>
+                          <button class="btn btn-info" @click="ItemEdit(item)" type="button">Edit</button>
+                          <button class="btn btn-danger" @click="removeItem(item)" type="button">Delete</button>
                         </td>
                       </tr>
-                    </tbody>
                   </table>
                 </div>
               </div>
@@ -386,7 +385,7 @@
         <footer class="sticky-footer bg-white">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
-              <span>Copyright &copy; Your Website 2021</span>
+              <span>Copyright &copy; Your Website 2023</span>
             </div>
           </div>
         </footer>
@@ -428,54 +427,58 @@
 </template>
 
 <script scope>
-let url = "http://localhost:3002/students";
+const url = "http://localhost:3002/users";
 export default {
   data() {
     return {
-      item: { firstName: "", lastName: "", edit: false },
+      item: { id: 0, fname: "", lname: "", course: "", edit: false },
       items: [],
       tempData: []
     }
   },
   methods: {
     async addItem() {
-      await this.$axios.$post(url + '/create', { firstName: this.item.firstName, lastName: this.item.lastName })
+      console.log(this.item.id);
+      await this.$axios.$post(url + '/insert', this.item)
         .then((res) => {
           console.log(res);
+          this.item = { id: 0, name: "", lname: "", course: "", edit: false };
           this.GetAllData();
         })
         .catch((err) => console.log(err));
-      this.item = [];
     },
-    async removeItem(id) {
-      await this.$axios.$post(url + '/delete', { id: id })
+    async removeItem(item) {
+      await this.$axios.$post(url + '/delete', { id: item.id })
         .then((res) => {
           console.log(res);
           this.GetAllData();
         })
         .catch((err) => console.log(err));
+    },
+    GetCurrentID() {
+      this.item.id = Math.max.apply(Math, this.items.map(function (o) { return o.id; })) + 1;
+      console.log(this.item);
     },
     async GetAllData() {
-      this.items = await this.$axios.$get(url)
+      await this.$axios.$get(url)
         .then((res) => {
           console.log(res);
           this.tempData = res;
-          console.log(this.items);
         })
         .catch((err) => console.log(err));
       this.items = this.tempData;
+      this.GetCurrentID();
     },
-    async ItemEdit(item) //For Updating
-    {
+    async ItemEdit(item) {
       if (!item.edit) {
         item.edit = !item.edit
       }
       else {
         item.edit = !item.edit
-        await this.$axios.$post(url + '/update', { id: item.id, firstName: item.firstName, lastName: item.lastName })
+        console.log(item);
+        await this.$axios.$post(url + '/update', item)
           .then((res) => {
             console.log(res);
-            this.GetAllData();
           })
           .catch((err) => console.log(err));
       }
@@ -499,4 +502,3 @@ body {
   background-image: none;
 }
 </style>
-

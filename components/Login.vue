@@ -30,18 +30,18 @@
                                     <td style="padding-top:30px;margin-left:10px; font-size:15pt;">Email</td>
                                 </tr>
                                 <tr>
-                                    <td><input placeholder="Email Address" class="act" type="email"/></td>
+                                    <td><input placeholder="Email Address" class="act" type="email" v-model="Email" id="Email"/></td>
                                 </tr>
                                 <tr>
                                     <td style="padding-top:10px;margin-left:10px; font-size:15pt;">Password</td>
                                 </tr>
                                 <tr>
-                                    <td><input placeholder="Password" class="act" type="password"/></td>
+                                    <td><input placeholder="Password" class="act" type="password" v-model="Password" id="Password"/></td>
                                 </tr>
 
                                 <tr>
                                   <NuxtLink to="/dashboard" class="nav-link">
-                                    <td><button class="button" >CONTINUE</button></td>
+                                    <td><button class="button" type="submit" id="Login" >CONTINUE</button></td>
                                   </NuxtLink>
                                 </tr>
                             </table>
