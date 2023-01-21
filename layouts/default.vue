@@ -106,6 +106,11 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'Inspire',
           to: '/inspire'
+        },
+        {
+          icon: 'mdi-file-question-outline',
+          title: 'Questionnaire',
+          to: '/questionnaire'
         }
       ],
       miniVariant: false,
