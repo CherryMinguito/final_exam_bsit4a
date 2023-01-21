@@ -109,8 +109,18 @@ export default {
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'Questions',
-          to: '/question'
+          title: 'New',
+          to: '/addquestion'
+        }
+        ,{
+          icon: 'mdi-chart-bubble',
+          title: 'Edit/Delete Question',
+          to: '/updatequestion'
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'Questionaire',
+          to: '/questionaire'
         }
       ],
       miniVariant: false,
