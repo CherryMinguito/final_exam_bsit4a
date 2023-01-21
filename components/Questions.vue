@@ -12,13 +12,13 @@
       
       <div>
         Question
-        <input v-model="item.question" id="FName"  type="text"  placeholder="Question" class="form-control">
+        <input v-model="item.question" id="Question"  type="text"  placeholder="Question" class="form-control">
       </div>
       
       <br/>
       <br/>
       Choice 1: 
-      <input v-model="item.choice_1" id="LName" type="text" placeholder="Choice 1" class="form-control">
+      <input v-model="item.choice_1" id="choice1" type="text" placeholder="Choice 1" class="form-control">
       <br/>
       Choice 2:
       <input v-model="item.choice_2" id="choice2" type="text" placeholder="Choice 2" class="form-control">
@@ -29,7 +29,7 @@
       Answer:
       <input v-model="item.answer" id="answer" type="text" placeholder="Answer" class="form-control">
       <br/>
-      <button class="btn btn-dark" @click="addItem" id="AddUser">Add</button>
+      <button class="btn btn-dark" @click="addItem" id="AddQuestion">Add</button>
       </div>
       <br>
   </div>
@@ -39,7 +39,7 @@
         <thead class="thead-light">
           <th>Question</th>
           <th>Answer</th>
-          <th class="col-2">Edit/Delete</th>
+          <th class="col-2">Actions</th>
         </thead>
         <tr v-for="item in items" v-bind:key="item.question">
           <td>
