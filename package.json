@@ -6,10 +6,17 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "koa":  "node koa/index.js"
   },
   "dependencies": {
+    "@koa/cors": "^4.0.0",
+    "@koa/router": "^12.0.0",
     "core-js": "^3.25.3",
+    "koa": "^2.14.1",
+    "koa-bodyparser": "^4.3.0",
+    "mongodb": "^4.13.0",
+    "nodemon": "^2.0.20",
     "nuxt": "^2.15.8",
     "vue": "^2.7.10",
     "vue-server-renderer": "^2.7.10",
