@@ -53,7 +53,7 @@ describe('CRUD ', () => {
     cy.get('[data-cy="questionsTable"]').contains('td', 'What is your course?').should('be.visible')
 
   })
-  it('Update', () => {
+  it('Delete', () => {
     cy.visit('http://localhost:3000/')
 
     cy.wait(1000)
@@ -69,7 +69,7 @@ describe('CRUD ', () => {
       .click()
 
     // Assert
-    cy.get('[data-cy="questionsTable"]').contains('td', 'What is your course?').should('not.be.visible')
+    cy.get('[data-cy="questionsTable"]').contains('td', 'What is your course?').should('not.exist')
 
   })
   it('Show Answers', () => {
