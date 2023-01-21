@@ -1,83 +1,80 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <v-card class="logo py-4 d-flex justify-center">
-        <NuxtLogo />
-        <VuetifyLogo />
-      </v-card>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
-</template>
+  <section style="background-color: #6b8f71;">
+    <div>
+    <div class="container">
+      <br>
+      <div class="form-inline" action="#">
+        <div class="col-sm-10">
+          <input type="text" id="form-name" v-model="item.Question" placeholder="Question" class="form-control" style="background-color: white;">
+        </div>
+        <div class="col-sm-2">
+          <input type="text" id="form-name" v-model="item.Choice1" placeholder="Choice 1" class="form-control" style="background-color: white;">
+        </div>
+        <div class="col-sm-2">
+          <input type="text" id="form-name" v-model="item.Choice2" placeholder="Choice 2" class="form-control" style="background-color: white;">
+        </div>
+        <div class="col-sm-2">
+          <input type="text" id="form-name" v-model="item.Choice3" placeholder="Choice 2" class="form-control" style="background-color: white;">
+        </div>
+        <div class="col-sm-2">
+          <input type="text" v-model="item.Answer" placeholder="Answer" class="form-control" v-on:keyup.enter="addItem" style="background-color: white;">
+        </div>
 
-<script>
-export default {
-  name: 'IndexPage'
-}
-</script>
+        <v-btn @click="addItem" color="dark"> Add Items</v-btn>
+      </div>
+
+      <br><br>
+      <table class="table table-striped table-bordered table-sm">
+        <thead>
+          <th class="col-2" style="background-color: #c2a878;">Question</th>
+          <th class="col-2" style="background-color: #c2a878;">Answer</th>
+          <th class="col-2" style="background-color: #c2a878;"></th>
+        </thead>
+        <tr v-for="item in items" :key="item.name">
+          <td>
+            <input v-if="item.edit" type="text" v-model="item.Question" style="" v-on:keyup.enter="item.edit = !item.edit">
+            <span v-else>{{item.Question}}</span>
+          </td>
+          <td>
+            <input v-if="item.edit" type="text" v-model="item.Answer" v-on:keyup.enter="item.edit = !item.edit" disabled>
+            <span v-else></span>
+          </td>
+          <td>
+            <v-btn @click="item.edit = !item.edit" color="blue">Show/Edit</v-btn>
+            <v-btn @click="removeItem(index)" color="red">Delete</v-btn></td>
+        </tr>
+      </table>
+  </div>
+  </div>
+  </section>
+  </template>
+
+  <script scope>
+
+    export default {
+      name: 'IndexPage',
+      data() {
+      return {
+        item: {Question: "",  Choice1: "", Choice2: "", Choice3: "", Answer: "", edit: false},
+        items: []
+      }
+    },
+    methods:{
+      addItem() {
+        this.items.push({
+          Question:this.item.Question, Choice1:this.item.Choice1, Choice2:this.item.Choice2, Choice3:this.item.Choice3, Answer:this.item.Answer, edit: false}
+          );
+        this.item = [];
+      },
+      removeItem(index){
+        this.items.splice(index, 1)
+      }
+    }
+    }
+  </script>
+
+  <style scoped>
+  .form-inline input {
+    margin-right:8px;
+  }
+  </style>
