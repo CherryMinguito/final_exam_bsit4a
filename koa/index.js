@@ -3,14 +3,14 @@ const cors = require('@koa/cors');
 require('./db');
 
 const bodyParser = require('koa-bodyparser');
-const book = require('./routes/books.route');
+const question = require('./routes/questions.route');
 
 const app = new Koa();
 
 app.use(bodyParser());
 app.use(cors());
 
-app.use(book.routes()).use(book.allowedMethods());
+app.use(question.routes()).use(question.allowedMethods());
 
 app.listen(8080);
 
