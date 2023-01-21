@@ -7,11 +7,12 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "koa":  "node koa/index.js"
+    "koa": "node koa/index.js"
   },
   "dependencies": {
     "@koa/cors": "^4.0.0",
     "@koa/router": "^12.0.0",
+    "@nuxtjs/axios": "^5.13.6",
     "core-js": "^3.25.3",
     "koa": "^2.14.1",
     "koa-bodyparser": "^4.3.0",
