@@ -158,54 +158,7 @@ export default{
                             });
             }
         },
-        async EditClick(item, index)
-        {
-            this.edit = true;
-            this.item = {id: item["id"], Question: item["Question"], ChoiceA: item["ChoiceA"], ChoiceB: item["ChoiceB"], Answer: item["Answer"]};
-        },
-        async UpdateClick(){
-            
-            let vrnt = "";
-            let ttl = "";
-            await this.$axios.$post(url + 'update', this.item)
-                        .then((res) => {
-                            vrnt = "success";
-                            ttl = "Success Updating User Account";
-                            this.item = {id: 0, Question: "", ChoiceA: "", ChoiceB: "", Answer: ""}
-                            this.GetAllQuestions();
-                        })
-                        .catch((err) => {
-                            vrnt = "danger";
-                            ttl = "Failed Updating User Account";
-                        });
-            this.$bvToast.toast(ttl, {
-                title: "Update Question",
-                autoHideDelay: 3000,
-                appendToast: false,
-                variant: vrnt
-                });
-        },
-        async DeleteClick(item){
-            await this.$axios.$post(url + 'delete', {id: item.id})
-                    .then((res) => {
-                    this.$bvToast.toast("Question with ID: " + item.id + " Deleted Successfully", {
-                                    title: "Question Deletion",
-                                    autoHideDelay: 3000,
-                                    appendToast: false,
-                                    variant: "success"
-                                    });
-                    this.GetAllQuestions();
-                })
-                .catch((err) => {
-                    this.$bvToast.toast("Failed to Delete Question with ID: " + item.id+ "", {
-                                    title: "Question Deletion",
-                                    autoHideDelay: 3000,
-                                    appendToast: false,
-                                    variant: "danger"
-                                    });
-                    console.log(err)
-                });
-        },
+
         ResetInput(){
             this.edit = false;
             this.GetCurrentID();
