@@ -1,0 +1,93 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.bck{
+    background: rgb(100, 126, 104);
+}
+
+.row{
+    background: white;
+    border-radius: 30px;
+}
+
+img{
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.btn1{
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+
+.navbar.navbar-dark.bg-dark{
+    background-color: #1C6758!important;
+ }
+
+ .form-inline input {
+    margin-right:8px;
+  }
+  .btn-label {
+	position: relative;
+	left: -12px;
+	display: inline-block;
+	padding: 6px 12px;
+	background: rgba(0, 0, 0, 0.15);
+	border-radius: 3px 0 0 3px;
+}
+
+.btn-labeled {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.btn {
+	margin-bottom: 10px;
+}
+
+#MyTable {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+  }
+  
+  #MyTable td, #MyTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #MyTable tr:nth-child(even){background-color: #658864;}
+  
+  #MyTable tr:hover {background-color: #ABC270;}
+  
+  #MyTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+  }
+  .float-container {
+    
+    padding: 20px;
+}
+
+.float-child {
+    width: 50%;
+    float: left;
+    padding: 20px;
+    
+}  

@@ -12,14 +12,14 @@ router.get('/', async (ctx, next) => {
 //Insert New Document
 router.post('/insert', async (ctx, next) =>{
     console.log("Router Data : " + ctx.request.body);
-    if(!ctx.request.body.id || !ctx.request.body.name || !ctx.request.body.lastname)
+    if(!ctx.request.body.id || !ctx.request.body.question || !ctx.request.body.choice_1 || !ctx.request.body.choice_2 || !ctx.request.body.choice_3 || !ctx.request.body.answer )
     {
         ctx.response.status = 404;
         ctx.body = "Missing fields";
     }
     else
     {
-        var res = await insertAccount(ctx.request.body.id, ctx.request.body.name, ctx.request.body.lastname);
+        var res = await insertAccount(ctx.request.body.id, ctx.request.body.question, ctx.request.body.choice_1, ctx.request.body.choice_2, ctx.request.body.choice_3, ctx.request.body.answer);
         if(res)
         {
             console.log("Success Insert");
@@ -32,7 +32,7 @@ router.post('/insert', async (ctx, next) =>{
 
 //Update Document
 router.post('/update', async (ctx, next) => {
-    if(!ctx.request.body.id || !ctx.request.body.name || !ctx.request.body.lastname)
+    if(!ctx.request.body.id || !ctx.request.body.question || !ctx.request.body.choice_1 || !ctx.request.body.choice_2 || !ctx.request.body.choice_3 || !ctx.request.body.answer)
     {
         console.log("Missing Fields");
         ctx.response.status = 404;
@@ -40,7 +40,7 @@ router.post('/update', async (ctx, next) => {
     }
     else
     {
-        var res = await updateAccount(ctx.request.body.id, ctx.request.body.name, ctx.request.body.lastname);
+        var res = await updateAccount(ctx.request.body.id, ctx.request.body.question, ctx.request.body.choice_1, ctx.request.body.choice_2, ctx.request.body.choice_3, ctx.request.body.answer);
         if(res)
         {
             ctx.response.status = 201;

@@ -1,39 +1,71 @@
 <template>
-  <div>
-    <div class="container" style="padding: 4rem; margin-left:250px">
+
+  <div class="float-container">
+    <div class="float-child bck" style="padding: 4rem;">
       <div>
-      <h3>Register Students</h3>
+      <h3>QUESTIONS</h3>
       <hr>
-      <h4>Add Students</h4>
+      <h4></h4>
       </div>
       <br>
       <div class="form-inline" action="#">
-      <input v-model="item.name" id="FName"  type="text"  placeholder="First Name" class="form-control">
-      <input v-model="item.lastname" id="LName" type="text" placeholder="Last Name" class="form-control">
-      <button class="btn btn-dark" @click="addItem" id="AddUser"><i class="fas fa-plus">Add</i></button>
-        </div>
-      <br><br>
-      <table class="table table-striped table-bordered table-sm" id="MyTable">
+      
+      <div>
+        Question
+        <input v-model="item.question" id="FName"  type="text"  placeholder="Question" class="form-control">
+      </div>
+      
+      <br/>
+      <br/>
+      Choice 1: 
+      <input v-model="item.choice_1" id="LName" type="text" placeholder="Choice 1" class="form-control">
+      <br/>
+      Choice 2:
+      <input v-model="item.choice_2" id="choice2" type="text" placeholder="Choice 2" class="form-control">
+      <br/>
+      Choice 3:
+      <input v-model="item.choice_3" id="choice3" type="text" placeholder="Choice 3" class="form-control">
+      <br/>
+      Answer:
+      <input v-model="item.answer" id="answer" type="text" placeholder="Answer" class="form-control">
+      <br/>
+      <button class="btn btn-dark" @click="addItem" id="AddUser">Add</button>
+      </div>
+      <br>
+  </div>
+  <div class="float-child">
+    <button class="btn btn-success" @click="addItem" id="ShowAnsKey">Show Answer Key</button>
+    <table class="bck" id="MyTable">
         <thead class="thead-light">
-          <th>First Name</th>
-          <th>Last Name</th>
+          <th>Question</th>
+          <th>Answer</th>
           <th class="col-2">Edit/Delete</th>
         </thead>
-        <tr v-for="item in items" v-bind:key="item.name">
+        <tr v-for="item in items" v-bind:key="item.question">
           <td>
-            <input v-if="item.edit" v-model="item.name" type="text">
-            <span v-else>{{item.name}}</span>
+            <input v-if="item.edit" v-model="item.question" type="text" class="col-lg-2">
+            <span v-else class="col-lg-2">{{item.question}}</span>
           </td>
           <td>
-            <input v-if="item.edit" v-model="item.lastname" type="text">
-            <span v-else>{{item.lastname}}</span>
+            <input v-if="item.edit" v-model="item.choice_1" type="text" class="col-lg-2">
+            <span v-else class="col-lg-2">Choice 1: {{item.choice_1}}</span>
+            <br/>
+            <input v-if="item.edit" v-model="item.choice_2" type="text" class="col-lg-2">
+            <span v-else class="col-lg-2">Choice 2: {{item.choice_2}}</span>
+            <br/>
+            <input v-if="item.edit" v-model="item.choice_3" type="text" class="col-lg-2">
+            <span v-else class="col-lg-2">Choice 3: {{item.choice_3}}</span>
+            <br/>
+            <br/>
+            <input v-if="item.edit" v-model="item.answer" type="text" class="col-lg-2">
+            <span v-else class="col-lg-2">Answer: {{item.answer}}</span>
           </td>
           <td>
             <button class="btn btn-info" @click="ItemEdit(item)">EDIT</button>
             <button class="btn btn-danger" @click="removeItem(item)">DELETE</button></td>
         </tr>
       </table>
-  </div>
+  </div>    
   </div>
 
   </template>
@@ -43,7 +75,7 @@
     export default {
       data() {
       return {
-        item: {id: 0, name: "", lastname: "", edit: false},
+        item: {id: 0, question: "", choice_1: "", choice_2:"", choice_3:"", answer:"", edit: false},
         items: [],
         tempData: []
       }
@@ -54,7 +86,7 @@
         await this.$axios.$post(url + '/insert', this.item)
         .then((res) => {
           console.log(res);
-          this.item = {id: 0, name: "", lastname: "", edit: false};
+          this.item = {id: 0, question: "", choice_1: "", choice_2:"", choice_3:"", answer:"", edit: false};
           this.GetAllData();
         })
         .catch((err) => console.log(err));
@@ -106,9 +138,7 @@
   </script>
 
 <style scoped>
-.form-inline input {
-  margin-right:8px;
-}
+
 
 
 </style>
