@@ -3,7 +3,7 @@
     <!-- ADD MODAL -->
     <v-dialog persistent transition="dialog-bottom-transition" max-width="600">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn color="primary" v-bind="attrs" v-on="on" @click.stop="addItem()"
+        <v-btn color="primary" v-bind="attrs" v-on="on" data-cy="addQuestion" @click.stop="addItem()"
           >Add a Question</v-btn
         >
       </template>
@@ -17,6 +17,7 @@
                 filled
                 dense
                 label="Question here"
+                data-cy="question"
               ></v-text-field>
               <v-text-field
                 v-model="item.choices.A"
@@ -25,6 +26,7 @@
                 filled
                 rounded
                 dense
+                data-cy="choiceA"
               ></v-text-field>
               <v-text-field
                 v-model="item.choices.B"
@@ -33,6 +35,7 @@
                 filled
                 rounded
                 dense
+                data-cy="choiceB"
               ></v-text-field>
               <v-text-field
                 v-model="item.choices.C"
@@ -41,6 +44,7 @@
                 filled
                 rounded
                 dense
+                data-cy="choiceC"
               ></v-text-field>
               <v-text-field
                 v-model="item.choices.D"
@@ -49,6 +53,7 @@
                 filled
                 rounded
                 dense
+                data-cy="choiceD"
               ></v-text-field>
             </div>
           </v-card-text>
@@ -61,6 +66,7 @@
               filled
               rounded
               dense
+              data-cy="answer"
             ></v-text-field>
             <v-btn
               elevation="2"
@@ -69,6 +75,7 @@
                 insertQuestion();
                 dialog.value = false;
               "
+              data-cy="insertQuestion"
               >Add</v-btn
             >
             <v-btn elevation="2" color="error" @click="dialog.value = false"
@@ -90,6 +97,7 @@
               filled
               dense
               label="Question here"
+              data-cy="questionEdit"
             ></v-text-field>
             <v-text-field
               v-model="item.choices.A"
@@ -98,6 +106,7 @@
               filled
               rounded
               dense
+              data-cy="choiceAEdit"
             ></v-text-field>
             <v-text-field
               v-model="item.choices.B"
@@ -106,6 +115,7 @@
               filled
               rounded
               dense
+              data-cy="choiceBEdit"
             ></v-text-field>
             <v-text-field
               v-model="item.choices.C"
@@ -114,6 +124,7 @@
               filled
               rounded
               dense
+              data-cy="choiceCEdit"
             ></v-text-field>
             <v-text-field
               v-model="item.choices.D"
@@ -122,6 +133,7 @@
               filled
               rounded
               dense
+              data-cy="choiceDEdit"
             ></v-text-field>
           </div>
         </v-card-text>
@@ -135,6 +147,7 @@
             filled
             rounded
             dense
+            data-cy="answerEdit"
           ></v-text-field>
           <v-btn
             color="green darken-1"
@@ -143,6 +156,7 @@
               updateQuestion(item);
               editDialog = false;
             "
+            data-cy="updateQuestion"
           >
             Save
           </v-btn>
@@ -158,6 +172,7 @@
       medium
       style="margin: 10px 0px 10px 10px"
       @click="editAction()"
+      data-cy="edit"
       >Show Actions </v-btn
     >
     <v-btn
@@ -176,6 +191,7 @@
       medium
       style="margin: 10px 0px 10px 10px"
       @click="showAnswers()"
+      data-cy="showAnswers"
       >Show Answers </v-btn
     >
     <v-btn
@@ -189,7 +205,7 @@
     >
 
     <!-- TABLE -->
-    <v-simple-table fixed-header>
+    <v-simple-table fixed-header data-cy="questionsTable">
       <template v-slot:default>
         <thead>
           <tr>
@@ -226,10 +242,11 @@
                   editItem(item);
                   editDialog = true;
                 "
+                data-cy="editItem"
               >
                 <i class="fas fa-edit"></i>
               </v-btn>
-              <v-btn class="ma-2" color="error" @click="deleteQuestion(item)">
+              <v-btn class="ma-2" color="error" @click="deleteQuestion(item)" data-cy="deleteQuestion">
                 <i class="fas fa-trash"></i>
               </v-btn>
             </td>

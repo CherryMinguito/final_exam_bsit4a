@@ -1,5 +1,10 @@
 # Final Exam BSIT4 AP6
 
+## To run:
+npm run-script koa //run api
+npm run dev //start nuxt project
+npx cypress open //start cypress
+
 ## Dependencies:
 1. Nodejs
 2. VSCode
