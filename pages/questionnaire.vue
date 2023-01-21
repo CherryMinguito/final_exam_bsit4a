@@ -1,0 +1,3 @@
+<template>
+  <Questionnaire />
+</template>
