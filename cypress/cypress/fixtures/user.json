@@ -1,6 +1,8 @@
 {
-  "fname": "Paul Angelo",
-  "lname": "Soltero",
-  "course": "BSIT",
+  "question": "What does CTU mean?",
+  "choiceA": "Cebu Technological University",
+  "choiceB": "Cebu Technology University",
+  "choiceC": "CebuTech University",
+  "answer": "A",
   "edit": false
 }

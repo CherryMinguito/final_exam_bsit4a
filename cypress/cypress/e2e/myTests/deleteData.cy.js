@@ -9,20 +9,14 @@ describe('Check Local API', () => {
       //Assert Url
       cy.url().should('eq', url);
 
-      cy.get('#StudTable').should('length', 1);
+      cy.get('#tableQuestionnaire').should('length', 1);
 
-      let fname = 'Paul Angelos';
-      let lname = 'Solteroy';
-      let course = 'BSITs';
+      let question = 'What does CTU mean?';
 
-      cy.get('#StudTable > tr').last().find('td').first().find('span').first().should('have.text', fname);
-      cy.get('#StudTable > tr').last().find('td').eq(1).find('span').first().should('have.text', lname);
-      cy.get('#StudTable > tr').last().find('td').eq(2).find('span').first().should('have.text', course);
+      cy.get('#tableQuestionnaire > tbody > tr').last().find('td').first().find('span').first().should('have.text', question);
 
-      cy.get('#StudTable > tr').last().find('td').last().find('button').last().click();
+      cy.get('#tableQuestionnaire > tbody > tr').last().find('td').last().find('button').last().click();
 
-      cy.get('#StudTable > tr').last().find('td').first().find('span').first().should('not.have.text', fname);
-      cy.get('#StudTable > tr').last().find('td').eq(1).find('span').first().should('not.have.text', lname);
-      cy.get('#StudTable > tr').last().find('td').eq(2).find('span').first().should('not.have.text', course);
+      cy.get('#tableQuestionnaire > tbody > tr').last().find('td').first().find('span').first().should('not.have.text',question);
   });
 });

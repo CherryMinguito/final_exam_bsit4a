@@ -1,7 +1,7 @@
 const { MongoClient } = require("mongodb");
 
 //Connect to MongoDB Deployment
-const connectionUrl = `mongodb+srv://paul:paul@cluster0.vrj77r9.mongodb.net/test`;
+const connectionUrl = `mongodb+srv://test:test@cluster0.bcoil6r.mongodb.net/test`;
 
 const client = new MongoClient(connectionUrl, {
   useNewUrlParser: true,
@@ -19,4 +19,3 @@ client.connect((err) => {
 });
 
 module.exports = client;
-

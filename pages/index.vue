@@ -1,5 +1,5 @@
 <template>
-  <Login />
+  <Student />
 </template>
 
 <script>

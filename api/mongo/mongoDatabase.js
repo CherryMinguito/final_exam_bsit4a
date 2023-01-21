@@ -1,5 +1,5 @@
 //Get data from Database
-const user = require('./mongoConnect.js').db('ScriptDev').collection('Students');
+const user = require('./mongoConnect.js').db('PracticalExam').collection('Questions');
 
 //Read
 const GetUsers = async () => {
@@ -8,16 +8,18 @@ const GetUsers = async () => {
 };
 
 //Create
-const insertAccount = async(id, fname, lname, course) => {
-    return await user.insertOne({id: parseInt(id), fname: fname, lname: lname, course: course, edit: false});
+const insertAccount = async(id, question, choiceA, choiceB, choiceC, answer) => {
+    return await user.insertOne({id: parseInt(id), question: question, choiceA: choiceA, choiceB: choiceB, choiceC: choiceC, answer: answer, edit: false});
 };
 
 //Update
-const updateAccount = async(id, fname, lname,course) =>{
+const updateAccount = async(id, question, choiceA, choiceB, choiceC, answer) =>{
     return await user.updateOne({id: parseInt(id)}, {$set:{
-        fname: fname,
-        lname: lname,
-        course: course
+      question: question,
+      choiceA: choiceA,
+      choiceB: choiceB,
+      choiceC: choiceC,
+      answer: answer
     }});
 };
 

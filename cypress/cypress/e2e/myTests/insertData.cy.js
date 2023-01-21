@@ -7,28 +7,36 @@ describe('Check Local API', () => {
         //Assert Url
         cy.url().should('eq', url);
 
-        cy.get('#StudTable').should('length', 1);
+        cy.get('#tableQuestionnaire').should('length', 1);
 
         cy.fixture('user.json').then((data) => {
 
-            cy.get('#FName').type(data.fname);
-            cy.get('#FName').should('have.value', data.fname);
+            cy.get('#Question').type(data.question);
+            cy.get('#Question').should('have.value', data.question);
 
-            cy.get('#LName').type(data.lname);
-            cy.get('#LName').should('have.value', data.lname);
+            cy.get('#A').type(data.choiceA);
+            cy.get('#A').should('have.value', data.choiceA);
 
-            cy.get('#Course').type(data.course);
-            cy.get('#Course').should('have.value', data.course);
+            cy.get('#B').type(data.choiceB);
+            cy.get('#B').should('have.value', data.choiceB);
 
-            cy.get('#AddUser').click();
+            cy.get('#C').type(data.choiceC);
+            cy.get('#C').should('have.value', data.choiceC);
+
+            cy.get('#Answer').type(data.answer);
+            cy.get('#Answer').should('have.value', data.answer);
+
+            cy.get('#btnAdd').click();
 
             cy.wait(2000);
 
-            cy.get('#FName').should('be.empty');
-            cy.get('#FName').should('be.empty');
-            cy.get('#Course').should('be.empty');
+            cy.get('#Question').should('be.empty');
+            cy.get('#A').should('be.empty');
+            cy.get('#B').should('be.empty');
+            cy.get('#C').should('be.empty');
+            cy.get('#Answer').should('be.empty');
 
-            cy.get('#StudTable > tr').last().find('td').first().find('span').first().should('have.text', data.fname);
+            cy.get('#tableQuestionnaire > tbody > tr').last().find('td').first().find('span').first().should('have.text', data.question);
         });
 
 

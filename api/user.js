@@ -8,26 +8,25 @@ const router = new Router({
 //Read
 router.get('/', async (ctx, next) => {
     ctx.body = await GetUsers();
-    console.log("Get All Student Data");
     console.log(ctx.body);
 })
 
 //Create
 router.post('/insert', async (ctx, next) =>{
     console.log("Router Data : " + ctx.request.body);
-    if(!ctx.request.body.id || !ctx.request.body.fname || !ctx.request.body.lname || !ctx.request.body.course)
+    if(!ctx.request.body.id || !ctx.request.body.question || !ctx.request.body.choiceA || !ctx.request.body.choiceB || !ctx.request.body.choiceC || !ctx.request.body.answer)
     {
         ctx.response.status = 404;
         ctx.body = "Missing fields";
     }
     else
     {
-        var res = await insertAccount(ctx.request.body.id, ctx.request.body.fname, ctx.request.body.lname, ctx.request.body.course);
+        var res = await insertAccount(ctx.request.body.id, ctx.request.body.question, ctx.request.body.choiceA, ctx.request.body.choiceB, ctx.request.body.choiceC, ctx.request.body.answer );
         if(res)
         {
             ctx.response.status = 201;
-            console.log("Student is successfully added");
-            ctx.body = "Student is successfully added";
+            console.log("Question is successfully added");
+            ctx.body = "Question is successfully added";
         }
     }
     next();
@@ -35,7 +34,7 @@ router.post('/insert', async (ctx, next) =>{
 
 //Update Document
 router.post('/update', async (ctx, next) => {
-    if(!ctx.request.body.id || !ctx.request.body.fname || !ctx.request.body.lname || !ctx.request.body.course)
+    if(!ctx.request.body.id || !ctx.request.body.question || !ctx.request.body.choiceA || !ctx.request.body.choiceB || !ctx.request.body.choiceC || !ctx.request.body.answer)
     {
         ctx.response.status = 404;
         ctx.body = "Missing fields";
@@ -43,12 +42,12 @@ router.post('/update', async (ctx, next) => {
     }
     else
     {
-        var res = await updateAccount(ctx.request.body.id, ctx.request.body.fname, ctx.request.body.lname, ctx.request.body.course);
+        var res = await updateAccount(ctx.request.body.id, ctx.request.body.question, ctx.request.body.choiceA, ctx.request.body.choiceB, ctx.request.body.choiceC, ctx.request.body.answer );
         if(res)
         {
             ctx.response.status = 201;
-            ctx.body = "Student is updated successfully";
-            console.log("Student is updated successfully");
+            ctx.body = "Question is updated successfully";
+            console.log("Question is updated successfully");
         }
 
     }
@@ -69,8 +68,8 @@ router.post('/delete', async (ctx, next) =>{
         if(res)
         {
             ctx.response.status = 201;
-            ctx.body = "Student is deleted successfully";
-            console.log("Student is deleted successfully");
+            ctx.body = "Question is deleted successfully";
+            console.log("Question is deleted successfully");
         }
     }
     next();
