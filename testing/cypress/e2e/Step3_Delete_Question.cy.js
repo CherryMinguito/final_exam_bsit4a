@@ -9,9 +9,6 @@ describe('Check Question Delete from Database', () => {
 
         cy.get('#MongoTable').should('length', 1);
 
-        let fname = 'Pamela1';
-        let lname = 'Tanedo2';
-
         cy.fixture('SampleQuestion.json').then((data) => {
             //Check if Question is the same as Sample Data Updated Value
             cy.get('#MongoTable > tbody > tr').last().find('td').first().should('have.text', data.Question  + ' P.S. Additional');
