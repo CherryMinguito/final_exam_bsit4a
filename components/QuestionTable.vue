@@ -156,9 +156,27 @@
       color="#66BB6A"
       elevation="2"
       medium
-      style="margin: 10px"
+      style="margin: 10px 0px 10px 10px"
       @click="editAction()"
-      >Show/Edit</v-btn
+      >Show Actions </v-btn
+    >
+    <v-btn
+      v-else
+      color="error"
+      elevation="2"
+      medium
+      style="margin: 10px 0px 10px 10px"
+      @click="editAction()"
+      >X Show Actions </v-btn
+    >
+    <v-btn
+      v-if="!answers"
+      color="#FB8C00"
+      elevation="2"
+      medium
+      style="margin: 10px 0px 10px 10px"
+      @click="showAnswers()"
+      >Show Answers </v-btn
     >
     <v-btn
       v-else
@@ -166,8 +184,8 @@
       elevation="2"
       medium
       style="margin: 10px"
-      @click="editAction()"
-      >X</v-btn
+      @click="showAnswers()"
+      >X Show Answers </v-btn
     >
 
     <!-- TABLE -->
@@ -176,7 +194,7 @@
         <thead>
           <tr>
             <th class="text-center">Question</th>
-            <th v-if="edit" class="text-center">Answer</th>
+            <th v-if="answers" class="text-center">Answer</th>
             <th v-if="edit" class="text-center">Action</th>
           </tr>
         </thead>
@@ -197,7 +215,7 @@
                 </v-card-text>
               </v-card>
             </td>
-            <td v-if="edit" class="text-center">
+            <td v-if="answers" class="text-center">
               <h2>{{ item.answer }}</h2>
             </td>
             <td v-if="edit" class="pa-5 d-flex justify-center">
@@ -238,6 +256,7 @@ export default {
         answer: "",
       },
       questions: [],
+      answers: false,
       edit: false,
       editDialog: false,
     };
@@ -343,6 +362,13 @@ export default {
     },
     editItem(item) {
       this.item = item;
+    },
+    showAnswers() {
+      if (this.answers) {
+        this.answers = false;
+      } else {
+        this.answers = true;
+      }
     },
     editAction() {
       if (this.edit) {
