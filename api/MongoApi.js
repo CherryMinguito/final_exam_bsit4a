@@ -2,7 +2,7 @@ const Router = require('koa-router');
 const {GetUsers, insertAccount, updateAccount, deleteAccount} = require('./mongo/MongoData');
 
 const router = new Router({
-    prefix: "/users"
+    prefix: "/questions"
 });
 
 router.get('/', async (ctx, next) => {

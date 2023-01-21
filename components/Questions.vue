@@ -74,7 +74,7 @@
   </template>
 
   <script scope>
-  const url = "http://localhost:3002/users";
+  const url = "http://localhost:3002/questions";
     export default {
       data() {
       return {
