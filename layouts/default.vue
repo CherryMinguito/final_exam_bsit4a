@@ -1,12 +1,11 @@
 <template>
-  <v-app dark>
+  <v-app dark style="background-image: url('https://wallpaperaccess.com/full/5923902.jpg'); background-size: cover;">
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
       fixed
-      app
-    >
+      app style="background: grey;">
       <v-list>
         <v-list-item
           v-for="(item, i) in items"
@@ -68,16 +67,7 @@
       temporary
       fixed
     >
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
+      
     </v-navigation-drawer>
     <v-footer
       :absolute="!fixed"
@@ -106,6 +96,11 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'Inspire',
           to: '/inspire'
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'Questions',
+          to: '/question'
         }
       ],
       miniVariant: false,

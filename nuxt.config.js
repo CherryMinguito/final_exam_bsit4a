@@ -20,7 +20,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
+  css: [ '~/assets/bootstrap.min.css', '~/assets/animate.min.css',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -37,7 +37,7 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
+  modules: ['bootstrap-vue/nuxt', '@nuxtjs/axios'
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
@@ -60,6 +60,9 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  }
+  build: { },
+  script: [
+    { src: '~/assets/bootstrap.min.js', mode: 'client' },
+    { src: '~/assets/bs-init.js', mode: 'client' },
+ ],
 }
