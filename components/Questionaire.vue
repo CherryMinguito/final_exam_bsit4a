@@ -65,7 +65,7 @@ export default {
       headers: [
         { text: 'Prompt',value: 'prompt' },
         { text: 'Answer Choices', value: 'answers' },
-        { text: 'Input Your Answer', value: 'selected' },
+        { text: 'Your Answer', value: 'selected' },
         { text: 'Actions', value: 'actions' }
       ],
       sortBy: 'prompt',
