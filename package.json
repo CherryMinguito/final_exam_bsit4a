@@ -9,6 +9,9 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.13.6",
+    "bootstrap": "^4.6.2",
+    "bootstrap-vue": "^2.22.0",
     "core-js": "^3.25.3",
     "nuxt": "^2.15.8",
     "vue": "^2.7.10",
@@ -18,5 +21,18 @@
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.12.3"
-  }
+  },
+  "description": "1. Nodejs\r 2. VSCode\r 3. Git",
+  "main": "nuxt.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CherryMinguito/final_exam_bsit4b.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CherryMinguito/final_exam_bsit4b/issues"
+  },
+  "homepage": "https://github.com/CherryMinguito/final_exam_bsit4b#readme"
 }
