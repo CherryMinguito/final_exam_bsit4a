@@ -69,7 +69,7 @@
                             </div>
                             <div class="col-3 d-flex justify-content-xxl-center align-items-xxl-center">
                                 <button @click="showAnswer()" class="btn btn-primary d-flex justify-content-xxl-center align-items-xxl-center" 
-                                data-bss-hover-animate="rubberBand" type="button" style="background: blue;font-family: Alatsi, sans-serif;text-align: center;width: 208px;border-style: none;">{{ showBtn }} Answer Key</button></div>
+                                data-bss-hover-animate="rubberBand" type="button" style="background: blue;font-family: Alatsi, sans-serif;text-align: center;width: 208px;border-style: none;">{{ showBtn }} Answer</button></div>
                         </div>
                     </div>
                     <div class="col" style="color: white !important;">
@@ -266,7 +266,7 @@ export default{
 .mytable{
     font-size: 30%;
     backdrop-filter: blur(15px);
-    background-color: blue;
+    background-color:white;
 }
 .isHidden{
     display: none;
