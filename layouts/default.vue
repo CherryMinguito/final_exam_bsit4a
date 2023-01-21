@@ -107,11 +107,17 @@ export default {
           title: 'Inspire',
           to: '/inspire'
         }
+        ,
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'Question',
+          to: '/questionpage'
+        }
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'Final Exam Sario,NeilJohn BSIT-4A'
     }
   }
 }
