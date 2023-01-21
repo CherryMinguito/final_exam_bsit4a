@@ -14,11 +14,11 @@
         <tr v-for="question in questions" :key="question.id">
           <td>{{ question.text }}</td>
           <td>
-            <span v-if="question.showAnswer">{{ question.answer }}</span>
+            <span v-if="question.showAnswer" v-text="question.answer"></span>
             <span v-if="!question.showAnswer" v-for="choice in question.choices">{{ choice }}</span>
           </td>
           <td>
-            <button @click="question.showAnswer = !question.showAnswer">{{ question.showAnswer ? 'Hide' : 'Show' }} Answer</button>
+            <button @click="toggleAnswer(question)">{{ question.showAnswer ? 'Hide' : 'Show' }} Answer</button>
             <button @click="editQuestion(question)" id="Edit">Edit</button>
             <button @click="deleteQuestion(question)">Delete</button>
           </td>
@@ -44,23 +44,55 @@
 </template>
 
 <script>
+const url = 'http://localhost:3001/questions';
+
 export default {
   data() {
     return {
+      questions: { text: "", answer: "", choices: "", edit: false },
       questions: [],
       isEditing: false,
       editingQuestion: {}
     };
   },
+  created(){
+    if(this.questions.length>0){
+        this.questions = this.questions.map(question => { 
+            question.showAnswer = false;
+            return question;
+        });
+      }
+  },
+  async toggleAnswer(question){
+      question.showAnswer = !question.showAnswer;
+  },
   methods: {
-    addQuestion() {
+    async addQuestion() {
       this.isEditing = true;
-      this.editingQuestion = { text: "", answer: "", choices: "", showAnswer: false };
+      if(!this.editingQuestion.text || !this.editingQuestion.answer || !this.editingQuestion.choices) return;
+        await this.$axios.$post(url + '/insert', {question: this.editingQuestion.text, answer: this.editingQuestion.answer, choices: this.editingQuestion.choices})
+        .then((res) => {
+          console.log(res);
+          this.editingQuestion = { text: "", answer: "", choices: "", edit: false };
+        })
+        .catch((err) => console.log(err.response.data));
+        await this.GetAllRecords();
     },
-    editQuestion(question) {
+    async editQuestion(item){
       this.isEditing = true;
-      this.editingQuestion = { ...question };
-    },
+      if(!item.editingQuestion)
+      {
+        item.editingQuestion = !item.editingQuestion;
+      }
+      else
+      {
+        item.editingQuestion = !item.editingQuestion;
+        await this.$axios.$post(url + '/update', item)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+        await this.GetAllRecords();
+      }
+  },
     saveQuestion() {
       if (this.editingQuestion.id) {
         // Update existing question
@@ -79,10 +111,22 @@ export default {
       cancelEdit() {
       this.isEditing = false;
     },
-    deleteQuestion(question) {
-      const questionIndex = this.questions.findIndex(q => q.id === question.id);
-      this.questions.splice(questionIndex, 1);
-    }
+    async deleteQuestion(item) {
+      await this.$axios.$post(url + '/delete', {id: item.id})
+      .then(() => {
+        console.log("res");
+      })
+      .catch((err) => console.log(err));
+      await this.GetAllRecords();
+    },
+    async GetAllRecords(){
+      await this.$axios.$get(url)
+      .then((res) => {
+        console.log(res);
+        this.items = res;
+      })
+      .catch((err) => console.log(err));
+    },
 }
 };
 </script>
