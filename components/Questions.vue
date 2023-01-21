@@ -34,7 +34,7 @@
       <br>
   </div>
   <div class="float-child">
-    <button class="btn btn-success" @click="addItem" id="ShowAnsKey">Show Answer Key</button>
+    <button class="btn btn-success" @click="showAnswer()" id="ShowAnsKey">{{ showBtn }} Answer Key</button>
     <table class="bck" id="MyTable">
         <thead class="thead-light">
           <th>Question</th>
@@ -43,22 +43,25 @@
         </thead>
         <tr v-for="item in items" v-bind:key="item.question">
           <td>
-            <input v-if="item.edit" v-model="item.question" type="text" class="col-lg-2">
+            <input v-if="item.edit" v-model="item.question" type="text">
             <span v-else class="col-lg-2">{{item.question}}</span>
           </td>
           <td>
-            <input v-if="item.edit" v-model="item.choice_1" type="text" class="col-lg-2">
+            <input v-if="item.edit" v-model="item.choice_1" type="text" >
             <span v-else class="col-lg-2">Choice 1: {{item.choice_1}}</span>
             <br/>
-            <input v-if="item.edit" v-model="item.choice_2" type="text" class="col-lg-2">
+            <input v-if="item.edit" v-model="item.choice_2" type="text" >
             <span v-else class="col-lg-2">Choice 2: {{item.choice_2}}</span>
             <br/>
-            <input v-if="item.edit" v-model="item.choice_3" type="text" class="col-lg-2">
+            <input v-if="item.edit" v-model="item.choice_3" type="text" >
             <span v-else class="col-lg-2">Choice 3: {{item.choice_3}}</span>
             <br/>
             <br/>
-            <input v-if="item.edit" v-model="item.answer" type="text" class="col-lg-2">
-            <span v-else class="col-lg-2">Answer: {{item.answer}}</span>
+            <div v-if="show">
+              <input v-if="item.edit" v-model="item.answer" type="text" >
+              <span v-else class="col-lg-2">Answer: {{item.answer}}</span>
+            </div>  
+            
           </td>
           <td>
             <button class="btn btn-info" @click="ItemEdit(item)">EDIT</button>
@@ -77,7 +80,9 @@
       return {
         item: {id: 0, question: "", choice_1: "", choice_2:"", choice_3:"", answer:"", edit: false},
         items: [],
-        tempData: []
+        tempData: [],
+        showBtn: "Show",
+        show: false
       }
     },
     methods:{
@@ -129,7 +134,11 @@
           })
           .catch((err) => console.log(err));
         }
-      }
+      },
+      async showAnswer(){
+            this.show = !this.show;
+            this.showBtn = (this.show) ? "Hide" : "Show";
+        }
     },
     async mounted(){
       await this.GetAllData();
