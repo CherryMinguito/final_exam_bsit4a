@@ -20,7 +20,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
+  css: [ '~/assets/bootstrap.min.css',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -60,6 +60,9 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  }
+  build: { },
+  script: [
+    { src: '@/assets/bootstrap.min.js', mode: 'client' },
+    { src: '@/assets/bs-init.js', mode: 'client'},
+  ],
 }

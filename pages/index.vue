@@ -81,3 +81,35 @@ export default {
   name: 'IndexPage'
 }
 </script>
+<style>
+.mytable{
+    font-size: 30%;
+    backdrop-filter: blur(15px);
+    background-color: gainsboro;
+}
+.isHidden{
+    display: none;
+}
+.InputField{
+    margin-top: 5%;
+    width: 21vw;
+    border: none;
+    border-bottom: 3px solid #6a8b4b;
+    padding-left: 15px;
+    height: 5vh;
+    font-size: 1.1vw;
+    color: #ebc960;
+    background-color: transparent;
+}
+.b-table tr td {
+    color: black;
+    font-size: .8vw;
+}
+.b-table-sticky-header > .table.b-table > thead > tr > th {
+    position: sticky !important;
+    color: black;
+    font-style: bold;
+    background: goldenrod !important;
+    font-size: 15px !important;
+  }
+</style>
