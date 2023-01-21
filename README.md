@@ -1,9 +1,10 @@
 # Final Exam BSIT4 AP6
 
-## To run:
+## To run this project:
 1. npm run-script koa //run api
 2. npm run dev //start nuxt project
 3. npx cypress open //start cypress
+
 
 ## Dependencies:
 1. Nodejs
@@ -30,15 +31,4 @@ git clone https://github.com/CherryMinguito/final_exam_bsit4b.git
 4.Create your own branch and use "lastname_firstname" naming convention.
 
 4.Commit your answers and push it to remote repository
-
-## Task
-
-A. Create a Vue page questionnaire that will accept multiple choice questions (50 points)
-
-Acceptance Criteria:
-1. Page should have all the CRUD(Create, Update, Delete) method
-2. Create method should be able to accept questions, choices and correct answer
-3. The table of questions should have 2 columns(question, answer). By default, hide the correct answer. There should be a button to show hidden answer when clicked.
-
-B. Create End To End Test for the acceptance criteria above mentioned(50 points)
 
