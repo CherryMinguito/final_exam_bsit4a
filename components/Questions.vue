@@ -48,19 +48,19 @@
                     <div class="card-footer">
                         <div class="row" >
                             <div class="col-6 d-flex justify-content-xxl-end align-items-xxl-center" style="padding-right: 35px;padding-left: 35px;">
-                                <button class="btn btn-primary" id="ResetBtn" @click="ResetInput()" data-bss-hover-animate="shake" type="button" style="font-family: Aboreto, serif;font-weight: bold;background: var(--bs-green);text-align: center;width: 208px;border-style: none;">Reset</button>
+                                <button class="btn btn-primary" id="ResetBtn" @click="ResetInput()" data-bss-hover-animate="shake" type="button" style="font-family: Aboreto, serif;font-weight: bold;background: var(blue);text-align: center;width: 208px;border-style: none;">Reset</button>
                             </div>
                             <div class="col-6 d-flex justify-content-xxl-start align-items-xxl-center" v-if="!edit" style="padding-right: 35px;padding-left: 35px;">
-                                <button class="btn btn-primary" id="InsertBtn" @click="InsertClick()" data-bss-hover-animate="pulse" type="submit" style="background: var(--bs-green);font-family: Aboreto, serif;font-weight: bold;text-align: center;width: 208px;border-style: none;">Insert</button>
+                                <button class="btn btn-primary" id="InsertBtn" @click="InsertClick()" data-bss-hover-animate="pulse" type="submit" style="background: var(blue);font-family: Aboreto, serif;font-weight: bold;text-align: center;width: 208px;border-style: none;">Insert</button>
                             </div>
                             <div class="col-6 d-flex justify-content-xxl-end align-items-xxl-center" v-if="edit" style="padding-right: 35px;padding-left: 35px;">
-                                <button class="btn btn-primary" id="UpdateBtn" @click="UpdateClick()" data-bss-hover-animate="shake" type="button" style="font-family: Aboreto, serif;font-weight: bold;background: var(--bs-green);text-align: center;width: 208px;border-style: none;">Update</button>
+                                <button class="btn btn-primary" id="UpdateBtn" @click="UpdateClick()" data-bss-hover-animate="shake" type="button" style="font-family: Aboreto, serif;font-weight: bold;background: var(blue);text-align: center;width: 208px;border-style: none;">Update</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col" style="padding-right: 40px;padding-left: 40px;color: white;">
+            <div class="col" style="padding-right: 40px;padding-left: 40px;color: light;">
                 <div class="row d-flex flex-column justify-content-xxl-center">
                     <div class="col">
                         <div class="row">
@@ -69,12 +69,12 @@
                             </div>
                             <div class="col-3 d-flex justify-content-xxl-center align-items-xxl-center">
                                 <button @click="showAnswer()" class="btn btn-primary d-flex justify-content-xxl-center align-items-xxl-center" 
-                                data-bss-hover-animate="rubberBand" type="button" style="background: var(--bs-green);font-family: Alatsi, sans-serif;text-align: center;width: 208px;border-style: none;">{{ showBtn }} Answer Key</button></div>
+                                data-bss-hover-animate="rubberBand" type="button" style="background: var(blue);font-family: Alatsi, sans-serif;text-align: center;width: 208px;border-style: none;">{{ showBtn }} Answer Key</button></div>
                         </div>
                     </div>
                     <div class="col" style="color: white !important;">
                         <b-table id="MongoTable"  sticky-header="70vh" style="overflow-x: hidden; color: white;" head-variant="light" no-border-collapse borderless :items="items" :fields="fields" class="mytable">
-                            <template v-slot:cell(Choices)="{ item, index }">
+                            <template v-slot:cell(Choices)="{ item}">
                                 <div class="d-flex" style="flex-direction: row;">
                                     <div v-if="!show">
                                         <strong>Choice A : </strong><span>{{ item.ChoiceA }}</span><br>
@@ -267,7 +267,7 @@ export default{
 .mytable{
     font-size: 30%;
     backdrop-filter: blur(15px);
-    background-color: gainsboro;
+    background-color: rgb(239, 203, 230);
 }
 .isHidden{
     display: none;
@@ -276,11 +276,11 @@ export default{
     margin-top: 5%;
     width: 21vw;
     border: none;
-    border-bottom: 3px solid #6a8b4b;
+    border-bottom: 3px solid #45e69b;
     padding-left: 15px;
     height: 5vh;
     font-size: 1.1vw;
-    color: #ebc960;
+    color: #60ebdd;
     background-color: transparent;
 }
 
@@ -293,7 +293,7 @@ export default{
     position: sticky !important;
     color: black;
     font-style: bold;
-    background: goldenrod !important;
+    background: rgb(204, 178, 228) !important;
     font-size: 15px !important;
   }
 </style>

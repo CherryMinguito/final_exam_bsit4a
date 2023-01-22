@@ -1,4 +1,4 @@
-const questions = require('./MongoConnect').db('ScriptDevExam').collection('Questions');
+const questions = require('./MongoConnect').db('PracticalExam').collection('Question');
 
 
 //Get All Documens from Account Collection
