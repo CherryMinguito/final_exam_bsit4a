@@ -4,28 +4,44 @@ const {getAllQuestions, getQuestions, updateQuestions, insertQuestions, deleteQu
 const router = new Router({
     prefix: '/question'
 });
+
+//Get All Documens from Account Collection
 router.get('/', async (ctx, next) => {
     ctx.body = await getAllQuestions();
     next();
 })
-router.get('/:id', async (ctx, next) =>{
 
+//Search Document by ID
+router.get('/:id', async (ctx, next) =>{
+    
     var res = await getQuestions(ctx.params.id);
-    if(res != null){
+    if(res != null)
+    {
+        ctx.response.status = 201;
+        ctx.body = res;
+        console.log("Get Question by ID");
     }
     else{
+        ctx.response.status = 404;
+        ctx.body = "Question not found";
     }
     next();
 });
+
+//Insert New Document
 router.post('/new', async (ctx, next) => {
-    if(!ctx.request.body.id || !ctx.request.body.Question || !ctx.request.body.ChoiceA || !ctx.request.body.ChoiceB || !ctx.request.body.Answer){
+    if(!ctx.request.body.id || !ctx.request.body.Question || !ctx.request.body.ChoiceA || !ctx.request.body.ChoiceB || !ctx.request.body.Answer)
+    {
         ctx.response.status = 404;
         ctx.body = "Missing fields";
     }
-    else{
+    else
+    {
+        
         console.log("Not Error");
         var res = await insertQuestions(ctx.request.body.id, ctx.request.body.Question, ctx.request.body.ChoiceA, ctx.request.body.ChoiceB, ctx.request.body.Answer);
-        if(res){
+        if(res)
+        {
             console.log("Success Insert");
             ctx.body = "Successfully Added Account";
             ctx.response.status = 201;
@@ -33,14 +49,20 @@ router.post('/new', async (ctx, next) => {
     }
     next();
 });
+
+
+//Update Document
 router.post('/update', async (ctx, next) => {
-    if(!ctx.request.body.id || !ctx.request.body.Question || !ctx.request.body.ChoiceA || !ctx.request.body.ChoiceB || !ctx.request.body.Answer){
+    if(!ctx.request.body.id || !ctx.request.body.Question || !ctx.request.body.ChoiceA || !ctx.request.body.ChoiceB || !ctx.request.body.Answer)
+    {
         ctx.response.status = 404;
         ctx.body = "Missing fields";
     }
-    else{
+    else
+    {
         var res = await updateQuestions(ctx.request.body.id, ctx.request.body.Question, ctx.request.body.ChoiceA, ctx.request.body.ChoiceB, ctx.request.body.Answer);
-        if(res){
+        if(res)
+        {
             ctx.response.status = 201;
             ctx.body = "Successful Update";
             console.log("Success Update");
@@ -48,14 +70,20 @@ router.post('/update', async (ctx, next) => {
     }
     next();
 });
+
+
+//Delete a Document
 router.post('/delete', async (ctx, next) => {
-    if(!ctx.request.body.id){
+    if(!ctx.request.body.id)
+    {
         ctx.response.status = 404;
         ctx.body = "Missing Fields";
     }
-    else{
+    else
+    {
         var res = await deleteQuestions(ctx.request.body.id);
-        if(res){
+        if(res)
+        {
             ctx.response.status = 201;
             ctx.body = "Account Deleted";
             console.log("Account Deleted");

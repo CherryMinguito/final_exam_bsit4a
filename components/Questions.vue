@@ -1,99 +1,108 @@
 <template>
     <div class="container-fluid">
-      <div class="row" style="padding: 46px;background: rgba(0,194,255,0.67);">
-        <div class="col-md-12" style="padding: 59px;background: var(--bs-body-bg);color: var(--bs-gray-900);border-radius: 42px;">
-            <h1>Add New Question</h1>
-            <div>
-                <div class="row">
-                    <div class="col">
-                        <p>Input a question select its corresponding answer.</p>
+        <div class="row">
+            <div class="col-4">
+                <div class="card" style="color: red;">
+                    <div class="card-header">
+                        <h1 style="font-family: Alatsi, sans-serif;font-weight: bold;">Create a Question</h1>
+                    </div>
+                    <div class="card-body" background="black" style="color: black">
+                        <hr>
+                        <div class="row d-flex flex-column align-items-xxl-center">
+                            <div class="col"><label class="col-form-label" style="font-family: Alatsi, sans-serif;font-weight: bold;font-size: 23px;">Question</label></div>
+                            <div class="col d-flex justify-content-xxl-center align-items-xxl-center" style="padding-left: 45px;">
+                                <b-form-input id="Question" required v-model="item.Question" class="d-flex flex-grow-1" :state="CheckQuestion" type="text" style="height: 36px;border: 1px solid gray;" />
+                            </div>
+                        </div>
+                        <div class="row d-flex flex-column align-items-xxl-center">
+                            <div class="col"><label class="col-form-label" style="font-family: Alatsi, sans-serif;font-weight: bold;font-size: 23px;">Choice A</label></div>
+                            <div class="col d-flex justify-content-xxl-center align-items-xxl-center" style="padding-left: 45px;">
+                                <b-form-input id="ChoiceA" required v-model="item.ChoiceA" class="d-flex flex-grow-1" :state="CheckChoiceA" type="text" style="height: 36px;border: 1px solid gray;" />
+                            </div>
+                        </div>
+                        <div class="row d-flex flex-column align-items-xxl-center">
+                            <div class="col"><label class="col-form-label" style="font-family: Alatsi, sans-serif;font-weight: bold;font-size: 23px;">Choice B</label></div>
+                            <div class="col d-flex justify-content-xxl-center align-items-xxl-center" style="padding-left: 45px;">
+                                <b-form-input id="ChoiceB" required v-model="item.ChoiceB" class="d-flex flex-grow-1" :state="CheckChoiceB" type="text" style="height: 36px;border: 1px solid gray;" />
+                            </div>
+                        </div>
+                        <div class="row d-flex flex-column align-items-xxl-center">
+                            <div class="col"><label class="col-form-label" style="font-family: Alatsi, sans-serif;font-weight: bold;font-size: 23px;">Answer Key</label></div>
+                            <div class="col d-flex justify-content-xxl-start align-items-xxl-center" style="padding-left: 45px;">
+                                <div class="row d-flex" style="flex-direction: row;">
+                                    <div>
+                                        <div class="col-3 form-check">
+                                            <input id="RdChoiceA" class="form-check-input" type="radio" value="A" v-model="item.Answer" />
+                                            <label class="form-check-label" for="ChoiceA">Choice A</label>
+                                        </div>
+                                        <div class="col-3 form-check">
+                                            <input id="RdChoiceB" class="form-check-input" type="radio" value="B" v-model="item.Answer" />
+                                            <label class="form-check-label" for="ChoiceB">Choice B</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row" >
+                            <div class="col-6 d-flex justify-content-xxl-end align-items-xxl-center" style="padding-right: 35px;padding-left: 35px;">
+                                <button class="btn btn-primary" id="ResetBtn" @click="ResetInput()" data-bss-hover-animate="shake" type="button" style="font-family: Aboreto, serif;font-weight: bold;background: black;text-align: center;width: 208px;border-style: none;">Reset</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-xxl-start align-items-xxl-center" v-if="!edit" style="padding-right: 35px;padding-left: 35px;">
+                                <button class="btn btn-primary" id="InsertBtn" @click="InsertClick()" data-bss-hover-animate="pulse" type="submit" style="background: black;font-family: Aboreto, serif;font-weight: bold;text-align: center;width: 208px;border-style: none;">Insert</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-xxl-end align-items-xxl-center" v-if="edit" style="padding-right: 35px;padding-left: 35px;">
+                                <button class="btn btn-primary" id="UpdateBtn" @click="UpdateClick()" data-bss-hover-animate="shake" type="button" style="font-family: Aboreto, serif;font-weight: bold;background: black;text-align: center;width: 208px;border-style: none;">Update</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div>
-                <form>
-                    <div class="row">
-                        <div class="col-lg-5">
-                            <label class="form-label">Question:</label>
-                            <b-form-input id="Question" required v-model="item.Question" class="d-flex flex-grow-1" :state="CheckQuestion" type="text" style="height: 36px;border: 1px solid black; border-radius: 25px;" />
-                        </div>
-                        <div class="col-lg-5">
-                            <div>
-                                <label class="form-label">Answer: (Choose the correct answer)</label>
-                            </div>
-                            <div class="row mt-2 ml-7">
-
-                                <input id="RdChoiceA" class="form-check-input" type="radio" value="A" v-model="item.Answer" />
-                                <label class="form-label mr-2">A:</label>
-                                <b-form-input id="ChoiceA" required v-model="item.ChoiceA" class="d-flex flex-grow-1" :state="CheckChoiceA" type="text" style="height: 36px; border: 1px solid black; border-radius: 25px;"/>
-                            </div>
-                            <div class="row mt-6 ml-7">
-
-                              <input id="RdChoiceB" class="form-check-input" type="radio" value="B" v-model="item.Answer" />
-                                <label class="form-label mr-2">B:</label>
-                                <b-form-input id="ChoiceB" required v-model="item.ChoiceB" class="d-flex flex-grow-1" :state="CheckChoiceB" type="text" style="height: 36px;border: 1px solid black; border-radius: 25px;" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-2">
-                            <div class="" v-if="!edit">
-                                <button class="btn" id="InsertBtn" @click="InsertClick()" type="submit" style="border: 2px solid #108cb4; border-radius: 25px; padding: 14px 28px;">Insert</button>
-                            </div>
-                            <div class="" v-if="edit">
-                                <button class="btn" id="UpdateBtn" @click="UpdateClick()" type="button" style="border: 2px solid #108cb4; border-radius: 25px; padding: 14px 28px;">Confirm</button>
-                            </div>
-                     </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="row" style="padding: 46px;background: rgba(0,194,255,0.67);">
-        <div class="col-md-12" style="padding: 59px;background: var(--bs-body-bg);color: var(--bs-gray-900);border-radius: 42px;">
-            <h1>List of Questions</h1>
-            <div>
-                <div class="row">
+            <div class="col" style="padding-right: 40px;padding-left: 40px;color: yellow;">
+                <div class="row d-flex flex-column justify-content-xxl-center">
                     <div class="col">
-                        <p>Here is the list of the questions and their corresponding answer</p>
+                        <div class="row">
+                            <div class="col">
+                                
+                                <h1 style="text-align: left;font-family: Alatsi, sans-serif;font-weight: bold;font-size: 60px;">Questions</h1>
+                            </div>
+                            <div class="col-5 d-flex justify-content-xxl-center align-items-xxl-center">
+                                <button @click="showAnswer()" class="btn btn-primary d-flex justify-content-xxl-center align-items-xxl-center" 
+                                data-bss-hover-animate="rubberBand" type="button" style="background: red;font-family: Alatsi, sans-serif;text-align: center;width: 208px;border-style: none;">{{ showBtn }} Answer</button></div>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                  <div class="col" style="color: white !important;">
-                        <b-table id="MongoTable"  sticky-header="70vh" style="overflow-x: hidden; color: white;" no-border-collapse borderless :items="items" :fields="fields" class="mytable">
-                            <template v-slot:cell(Choices)="{ item, index }">
+                    <div class="col" style="color: gray !important;">
+                        <b-table id="MongoTable"  sticky-header="70vh" style="overflow-x: hidden; color: gray;" head-variant="light" no-border-collapse borderless :items="items" :fields="fields" class="mytable">
+                            <template v-slot:cell(Choices)="{ item }">
                                 <div class="d-flex" style="flex-direction: row;">
                                     <div v-if="!show">
-                                        <strong>A : </strong><span>{{ item.ChoiceA }}</span><br>
-                                        <strong>B : </strong><span>{{ item.ChoiceB }}</span>
+                                        <strong>Choice A : </strong><span>{{ item.ChoiceA }}</span><br>
+                                        <strong>Choice B : </strong><span>{{ item.ChoiceB }}</span>
                                     </div>
                                     <div v-if="show">
-                                        <div v-if="item.Answer == 'A'"><strong>A : </strong><span>{{ item.ChoiceA }}</span></div>
-                                        <div v-if="item.Answer == 'B'"><strong>B : </strong><span>{{ item.ChoiceB }}</span></div>
+                                        <div v-if="item.Answer == 'A'"><strong>Choice A : </strong><span>{{ item.ChoiceA }}</span></div>
+                                        <div v-if="item.Answer == 'B'"><strong>Choice B : </strong><span>{{ item.ChoiceB }}</span></div>
                                     </div>
                                 </div>
                             </template>
                             <template v-slot:cell(actions)="{ item, index }">
                                 <div class="row">
                                     <div class="col">
-
-                                        <b-button @click="EditClick(item, index)" style="background-color: #108cb4;">Edit</b-button>
-                                        <b-button @click="DeleteClick(item)" style="background-color: #CE2E17;">Delete</b-button>
+                                        <b-button v-b-tooltip.hover title="Delete User" @click="DeleteClick(item)" color: yellow >Delete</b-button>
+                                    </div>
+                                    <div class="col">
+                                        <b-button v-b-tooltip.hover title="Edit User Info" @click="EditClick(item, index)" color: yellow>Edit</b-button>
                                     </div>
                                 </div>
                             </template>
                         </b-table>
                     </div>
                 </div>
-                <div class="row ml-1">
-                   <button @click="showAnswer()" class="btn"
-                    data-bss-hover-animate="rubberBand" type="button" style="background-color: #108cb4; sans-serif;text-align: center;width: 208px;border-style: none;">{{ showBtn }} Answer Key</button></div>
-                </div>
-
-            </div>
-            <div>
-
             </div>
         </div>
-        </div>
+    </div>
 </template>
 
 <script>
@@ -105,67 +114,93 @@ export default{
             items: [],
             fields: [{key: 'Question', sortable: true},{key: 'Choices', sortable: false}, 'actions'],
             show: false,
-            showBtn: "Reveal",
+            showBtn: "Show",
             edit: false
         };
     },
     methods: {
         async InsertClick(){
-            if(this.item.Question === "" || this.item.ChoiceA === "" || this.item.ChoiceB === "" || this.item.Answer === ""){
+            if(this.item.Question === "" || this.item.ChoiceA === "" || this.item.ChoiceB === "" || this.item.Answer === "")
+            {
                 this.$bvToast.toast("Please Fill All Fields", {
-                title: "Insert Fields",
-            });
+                                    title: "Missing Fields",
+                                    autoHideDelay: 10000,
+                                    appendToast: false,
+                                    variant: "warning"
+                                    });
             }
             else{
                 console.log('Question: ' + this.item.Question + ' Choice A: ' + this.item.ChoiceA + ' Choice B: ' + this.item.ChoiceB + ' Answer Key: ' + this.item.Answer);
                 let vrnt = "";
                 let ttl = "";
                 await this.$axios.$post(url + 'new', this.item)
-                .then((res) => {
-                  console.log(res);
-                  this.item = {id: 0, Question: "", ChoiceA: "", ChoiceB: "", Answer: ""}
-                  this.GetAllQuestions();
-                })
-                .catch((err) => {
-                  console.log(err)
-                });
+                        .then((res) => {
+                            vrnt = "success";
+                            ttl = "Success Adding Question";
+                            console.log(res);
+                            this.item = {id: 0, Question: "", ChoiceA: "", ChoiceB: "", Answer: ""}
+                            this.GetAllQuestions();
+                        })
+                        .catch((err) => {
+                            vrnt = "danger";
+                            ttl = "Failed Adding To Add Question";
+                            console.log(err)
+                        });
                 this.$bvToast.toast(ttl, {
-                  title: "Insert",
-                });
+                            title: "Insert Question",
+                            autoHideDelay: 3000,
+                            appendToast: false,
+                            variant: vrnt
+                            });
             }
         },
-        async EditClick(item, index){
+        async EditClick(item, index)
+        {
             this.edit = true;
             this.item = {id: item["id"], Question: item["Question"], ChoiceA: item["ChoiceA"], ChoiceB: item["ChoiceB"], Answer: item["Answer"]};
         },
         async UpdateClick(){
+            
             let vrnt = "";
             let ttl = "";
             await this.$axios.$post(url + 'update', this.item)
-            .then((res) => {
-              this.item = {id: 0, Question: "", ChoiceA: "", ChoiceB: "", Answer: ""}
-              this.GetAllQuestions();
-            })
-            .catch((err) => {
-            });
+                        .then((res) => {
+                            vrnt = "success";
+                            ttl = "Success Updating User Account";
+                            this.item = {id: 0, Question: "", ChoiceA: "", ChoiceB: "", Answer: ""}
+                            this.GetAllQuestions();
+                        })
+                        .catch((err) => {
+                            vrnt = "danger";
+                            ttl = "Failed Updating User Account";
+                        });
             this.$bvToast.toast(ttl, {
-                title: "Update",
-            });
+                title: "Update Question",
+                autoHideDelay: 3000,
+                appendToast: false,
+                variant: vrnt
+                });
         },
         async DeleteClick(item){
             await this.$axios.$post(url + 'delete', {id: item.id})
-            .then((res) => {
-            this.$bvToast.toast("Question with ID: " + item.id + " Deleted Successfully", {
-              title: "Delete",
-            });
-            this.GetAllQuestions();
-            })
-            .catch((err) => {
-            this.$bvToast.toast("Failed to Delete " + item.id+ "", {
-              title: "Delete",
-            });
-            console.log(err)
-             });
+                    .then((res) => {
+                    this.$bvToast.toast("Question with ID: " + item.id + " Deleted Successfully", {
+                                    title: "Question Deletion",
+                                    autoHideDelay: 3000,
+                                    appendToast: false,
+                                    variant: "success"
+                                    });
+                    this.GetAllQuestions();
+                })
+                .catch((err) => {
+                    this.$bvToast.toast("Failed to Delete Question with ID: " + item.id+ "", {
+                                    title: "Question Deletion",
+                                    autoHideDelay: 3000,
+                                    appendToast: false,
+                                    variant: "danger"
+                                    });
+                    console.log(err)
+                });
         },
         ResetInput(){
             this.edit = false;
@@ -185,34 +220,39 @@ export default{
                     });
         },
         GetCurrentID(){
-            if(this.items.length > 0){
+            if(this.items.length > 0)
+            {
                 this.item.id = Math.max.apply(Math, this.items.map(function(o) { return o.id; })) + 1;
             }
             else{
                 this.item.id = 100;
             }
+
             console.log(this.item.id);
         },
         showAnswer(){
             this.show = !this.show;
-            this.showBtn = (this.show) ? "Hide" : "Reveal";
+            this.showBtn = (this.show) ? "Hide" : "Show";
         }
     },
     computed:{
         CheckQuestion(){
-            if(this.item.Question.length == 0){
+            if(this.item.Question.length == 0)
+            {
                 return null;
             }
             return (this.item.Question.length > 0);
         },
         CheckChoiceA(){
-            if(this.item.ChoiceA.length == 0){
+            if(this.item.ChoiceA.length == 0)
+            {
                 return null;
             }
             return (this.item.ChoiceA.length > 0);
         },
         CheckChoiceB(){
-            if(this.item.ChoiceB.length == 0){
+            if(this.item.ChoiceB.length == 0)
+            {
                 return null;
             }
             return (this.item.ChoiceB.length > 0);
@@ -225,6 +265,25 @@ export default{
 </script>
 
 <style>
+.mytable{
+    font-size: 30%;
+    backdrop-filter: blur(15px);
+    background-color: gainsboro;
+}
+.isHidden{
+    display: none;
+}
+.InputField{
+    margin-top: 5%;
+    width: 21vw;
+    border: none;
+    border-bottom: 3px solid #6a8b4b;
+    padding-left: 15px;
+    height: 5vh;
+    font-size: 1.1vw;
+    color: yellow;
+    background-color: transparent;
+}
 
 .b-table tr td {
     color: black;
@@ -233,17 +292,9 @@ export default{
 
 .b-table-sticky-header > .table.b-table > thead > tr > th {
     position: sticky !important;
-    color: black;
+    color: yellow;
     font-style: bold;
-    background: #108cb4!important;
+    background: gray !important;
     font-size: 15px !important;
   }
-.mytable{
-    font-size: 30%;
-    backdrop-filter: blur(15px);
-    background-color: whitesmoke;
-}
-.isHidden{
-    display: none;
-}
 </style>

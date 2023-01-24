@@ -19,6 +19,7 @@
 </template>
 
 <script>
+//comment
 export default {
   name: 'InspirePage'
 }

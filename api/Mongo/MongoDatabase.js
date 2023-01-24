@@ -1,4 +1,4 @@
-const questions = require('./MongoConnect').db('FinalsScript').collection('Questions');
+const questions = require('./MongoConnect').db('mongodb').collection('mongocoll');
 
 
 //Get All Documens from Account Collection
