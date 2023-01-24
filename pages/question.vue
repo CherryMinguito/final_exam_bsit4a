@@ -1,3 +1,0 @@
-<template>
-    <Questions />
-</template>
