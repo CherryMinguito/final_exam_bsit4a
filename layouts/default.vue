@@ -109,8 +109,8 @@ export default {
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'Questions',
-          to: '/question'
+          title: 'Questionnaire',
+          to: '/questionnaire'
         }
       ],
       miniVariant: false,
